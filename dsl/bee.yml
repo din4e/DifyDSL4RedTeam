@@ -1,0 +1,800 @@
+app:
+  description: 获取目标的ip，域名，小程序，输出格式
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 小蜜蜂
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 2b807061-bcfa-4147-8295-8864a0318671
+    name: zero_sec_api
+    selector:
+    - env
+    - zero_sec_api
+    value: ''
+    value_type: secret
+  - description: ''
+    id: 0115bbcf-417b-48f5-838d-997bcede0afd
+    name: day_range
+    selector:
+    - env
+    - day_range
+    value: 90
+    value_type: number
+  - description: ''
+    id: 8cc8f5f2-834a-4bd7-bc92-2ff27f917d2e
+    name: page_size
+    selector:
+    - env
+    - page_size
+    value: 25
+    value_type: number
+  - description: ''
+    id: dd90723b-70d8-4fdc-babc-911ea5429eee
+    name: hunter_api_key
+    selector:
+    - env
+    - hunter_api_key
+    value: ''
+    value_type: secret
+  - description: ''
+    id: 15f131cb-31fa-4c55-9c36-3b9968126a36
+    name: quake_api_key
+    selector:
+    - env
+    - quake_api
+    value: ''
+    value_type: secret
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1738897615154-source-1738912539615-target
+      selected: false
+      source: '1738897615154'
+      sourceHandle: source
+      target: '1738912539615'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: http-request
+      id: 1738912539615-source-1738897712777-target
+      selected: false
+      source: '1738912539615'
+      sourceHandle: source
+      target: '1738897712777'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 1738897712777-source-1738913986804-target
+      selected: false
+      source: '1738897712777'
+      sourceHandle: source
+      target: '1738913986804'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: http-request
+      id: 17389152715050-source-17389152728020-target
+      selected: false
+      source: '17389152715050'
+      sourceHandle: source
+      target: '17389152728020'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 17389152728020-source-17389152741320-target
+      selected: false
+      source: '17389152728020'
+      sourceHandle: source
+      target: '17389152741320'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1738897615154-source-17389152715050-target
+      selected: false
+      source: '1738897615154'
+      sourceHandle: source
+      target: '17389152715050'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: http-request
+      id: 1738897615154-source-1738981219497-target
+      source: '1738897615154'
+      sourceHandle: source
+      target: '1738981219497'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 1738981219497-source-1738983985854-target
+      source: '1738981219497'
+      sourceHandle: source
+      target: '1738983985854'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: variable-aggregator
+      id: 17389152741320-source-1738987022560-target
+      source: '17389152741320'
+      sourceHandle: source
+      target: '1738987022560'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: variable-aggregator
+      id: 1738913986804-source-1738987022560-target
+      source: '1738913986804'
+      sourceHandle: source
+      target: '1738987022560'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: variable-aggregator
+      id: 1738983985854-source-1738987022560-target
+      source: '1738983985854'
+      sourceHandle: source
+      target: '1738987022560'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: variable-aggregator
+        targetType: if-else
+      id: 1738987022560-source-1738989691547-target
+      source: '1738987022560'
+      sourceHandle: source
+      target: '1738989691547'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: end
+      id: 1738989691547-true-1739000477769-target
+      source: '1738989691547'
+      sourceHandle: 'true'
+      target: '1739000477769'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: end
+      id: 1738989691547-false-1739000477769-target
+      source: '1738989691547'
+      sourceHandle: 'false'
+      target: '1739000477769'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 目标名称
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: target_name
+      height: 89
+      id: '1738897615154'
+      position:
+        x: 30
+        y: 272.5
+      positionAbsolute:
+        x: 30
+        y: 272.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        default_value:
+        - key: body
+          type: string
+          value: '""'
+        - key: status_code
+          type: number
+          value: 0
+        - key: headers
+          type: object
+          value: '{}'
+        desc: ''
+        error_strategy: default-value
+        headers: ''
+        method: get
+        params: 'api-key:{{#env.hunter_api_key#}}
+
+          page:1
+
+          is_web:1
+
+          end_time:2025-02-07
+
+          search:{{#1738912539615.search_list#}}
+
+          start_time:2025-02-06
+
+          page_size:100'
+        retry_config:
+          max_retries: 1
+          retry_enabled: false
+          retry_interval: 982
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: Hunter
+        type: http-request
+        url: https://hunter.qianxin.com/openApi/search
+        variables: []
+      height: 145
+      id: '1738897712777'
+      position:
+        x: 636
+        y: 457.5
+      positionAbsolute:
+        x: 636
+        y: 457.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(target_name: str) -> dict:\n    import base64\n    search\
+          \ = f'icp.name=\"{target_name}\"'\n    search = base64.urlsafe_b64encode(search.encode('utf-8')).decode('utf-8')\n\
+          \    return {\n        \"search_list\": search\n    }\n"
+        code_language: python3
+        default_value:
+        - key: search_list
+          type: string
+          value: ''
+        desc: ''
+        error_strategy: default-value
+        outputs:
+          search_list:
+            children: null
+            type: string
+        selected: true
+        title: Hunter 前处理
+        type: code
+        variables:
+        - value_selector:
+          - '1738897615154'
+          - target_name
+          variable: target_name
+      height: 89
+      id: '1738912539615'
+      position:
+        x: 333
+        y: 457.5
+      positionAbsolute:
+        x: 333
+        y: 457.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(body: str) -> dict:\n    body_data = json.loads(body)   \n\
+          \    data = body_data[\"data\"].get(\"arr\", [])\n    domain_set = set()\n\
+          \    ip_set = set()\n    for item in data:\n        domain_set.add(item.get(\"\
+          domain\", \"\"))\n        ip_set.add(item.get(\"ip\", \"\"))\n    \n   \
+          \ return {\n        \"domain_list\": list(domain_set),\n        \"ip_list\"\
+          : list(ip_set)\n    }"
+        code_language: python3
+        default_value:
+        - key: domain_list
+          type: array[string]
+          value: '[]'
+        - key: ip_list
+          type: array[string]
+          value: '[]'
+        desc: ''
+        error_strategy: default-value
+        outputs:
+          domain_list:
+            children: null
+            type: array[string]
+          ip_list:
+            children: null
+            type: array[string]
+        selected: false
+        title: Hunter 后处理
+        type: code
+        variables:
+        - value_selector:
+          - '1738897712777'
+          - body
+          variable: body
+      height: 89
+      id: '1738913986804'
+      position:
+        x: 939
+        y: 457.5
+      positionAbsolute:
+        x: 939
+        y: 457.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(target_name: str, day_range:int) -> dict:\n    import datetime\n\
+          \    search = f'icp_keywords:\"{target_name}\"'\n    time_now = datetime.datetime.now()\n\
+          \    start_time = (time_now-datetime.timedelta(days=day_range)).strftime(\"\
+          %Y-%m-%d %H:%M:%S\")\n    end_time = time_now.strftime(\"%Y-%m-%d %H:%M:%S\"\
+          )\n\n\n    return {\n        \"search_list\": search,\n        \"q_start_date\"\
+          : start_time,\n        \"q_end_date\": end_time,\n    }\n"
+        code_language: python3
+        default_value:
+        - key: search_list
+          type: string
+          value: ''
+        - key: q_start_date
+          type: string
+          value: ''
+        - key: q_end_date
+          type: string
+          value: ''
+        desc: ''
+        error_strategy: default-value
+        outputs:
+          q_end_date:
+            children: null
+            type: string
+          q_start_date:
+            children: null
+            type: string
+          search_list:
+            children: null
+            type: string
+        selected: false
+        title: Quake 前处理
+        type: code
+        variables:
+        - value_selector:
+          - '1738897615154'
+          - target_name
+          variable: target_name
+        - value_selector:
+          - env
+          - day_range
+          variable: day_range
+      height: 89
+      id: '17389152715050'
+      position:
+        x: 333
+        y: 272.5
+      positionAbsolute:
+        x: 333
+        y: 272.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-10
+            key: ''
+            type: text
+            value: '{ "query": "{{#17389152715050.search_list#}}", "start": 0, "size":
+              1, "start_time": "{{#17389152715050.q_start_date#}}", "end_time": "{{#17389152715050.q_end_date#}}","aggregation_list":["ip","domain"]}'
+          type: raw-text
+        default_value:
+        - key: body
+          type: string
+          value: '""'
+        - key: status_code
+          type: number
+          value: 0
+        - key: headers
+          type: object
+          value: '{}'
+        desc: ''
+        error_strategy: default-value
+        headers: 'X-QuakeToken:{{#env.quake_api_key#}}
+
+          Content-Type:application/json'
+        method: POST
+        params: ''
+        retry_config:
+          max_retries: 1
+          retry_enabled: false
+          retry_interval: 815
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: Quake
+        type: http-request
+        url: https://quake.360.net/api/v3/search/quake_service
+        variables: []
+      height: 145
+      id: '17389152728020'
+      position:
+        x: 636
+        y: 272.5
+      positionAbsolute:
+        x: 636
+        y: 272.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(body: str) -> dict:\n    body_data = json.loads(body)   \n\
+          \    data = body_data[\"data\"]\n    domain_set = set()\n    ip_set = set()\n\
+          \    for item in data:\n        domain_set.add(item.get(\"domain\", \"\"\
+          ))\n        ip_set.add(item.get(\"ip\", \"\"))\n    \n    return {\n   \
+          \     \"domain_list\": list(domain_set),\n        \"ip_list\": list(ip_set)\n\
+          \    }"
+        code_language: python3
+        default_value:
+        - key: domain_list
+          type: array[string]
+          value: '[]'
+        - key: ip_list
+          type: array[string]
+          value: '[]'
+        desc: ''
+        error_strategy: default-value
+        outputs:
+          domain_list:
+            children: null
+            type: array[string]
+          ip_list:
+            children: null
+            type: array[string]
+        selected: false
+        title: Quake 后处理
+        type: code
+        variables:
+        - value_selector:
+          - '17389152728020'
+          - body
+          variable: body
+      height: 89
+      id: '17389152741320'
+      position:
+        x: 939
+        y: 272.5
+      positionAbsolute:
+        x: 939
+        y: 272.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-1
+            key: ''
+            type: text
+            value: '{"query":"{{#1738897615154.target_name#}}", "query_type":"site",
+              "pagesize":{{#env.page_size#}}, "zone_key_id":"{{#env.zero_sec_api#}}"}'
+          type: raw-text
+        default_value:
+        - key: body
+          type: string
+          value: '""'
+        - key: status_code
+          type: number
+          value: 0
+        - key: headers
+          type: object
+          value: '{}'
+        desc: ''
+        error_strategy: default-value
+        headers: Content-Type:application/json
+        method: post
+        params: ''
+        retry_config:
+          max_retries: '1'
+          retry_enabled: false
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: ZeroSec
+        type: http-request
+        url: https://0.zone/api/data/
+        variables: []
+      height: 129
+      id: '1738981219497'
+      position:
+        x: 636
+        y: 642.5
+      positionAbsolute:
+        x: 636
+        y: 642.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "\ndef main(body: str) -> dict:\n    body_data = json.loads(body)  \
+          \ \n    data = body_data[\"data\"]\n    domain_set = set()\n    ip_set =\
+          \ set()\n    from urllib.parse import urlparse\n    import ipaddress\n \
+          \   def is_ip_address(hostname):\n        try:\n            # 尝试将 hostname\
+          \ 解析为 IP\n            ipaddress.ip_address(hostname)\n            return\
+          \ True\n        except ValueError:\n            # 如果解析失败，则不是 IP\n      \
+          \      return False\n    \n    for item in data:\n        hostname = urlparse(item.get(\"\
+          url\", \"\")).hostname\n        if is_ip_address(hostname):\n          \
+          \  ip_set.add(item.get(\"ip\", \"\"))    \n        else:\n            domain_set.add(hostname)\n\
+          \        ip_set.add(item.get(\"ip\", \"\"))\n\n    return {\n        \"\
+          domain_list\": list(domain_set),\n        \"ip_list\": list(ip_set)\n  \
+          \  }"
+        code_language: python3
+        default_value:
+        - key: domain_list
+          type: array[string]
+          value: '[]'
+        - key: ip_list
+          type: array[string]
+          value: '[]'
+        desc: ''
+        error_strategy: default-value
+        outputs:
+          domain_list:
+            children: null
+            type: array[string]
+          ip_list:
+            children: null
+            type: array[string]
+        selected: false
+        title: ZeroSec 后处理
+        type: code
+        variables:
+        - value_selector:
+          - '1738981219497'
+          - body
+          variable: body
+      height: 89
+      id: '1738983985854'
+      position:
+        x: 939
+        y: 634.5
+      positionAbsolute:
+        x: 939
+        y: 634.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        advanced_settings:
+          group_enabled: true
+          groups:
+          - groupId: 81988942-07c7-4aa9-a3bf-5727fe0a591c
+            group_name: domain
+            output_type: array[string]
+            variables:
+            - - '17389152741320'
+              - domain_list
+            - - '1738983985854'
+              - domain_list
+            - - '1738913986804'
+              - domain_list
+          - groupId: 483643d3-d1e1-4e50-aada-7a3a0998b2b4
+            group_name: ip
+            output_type: array[string]
+            variables:
+            - - '1738983985854'
+              - ip_list
+            - - '17389152741320'
+              - ip_list
+            - - '1738913986804'
+              - ip_list
+        desc: ''
+        output_type: array[string]
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '17389152741320'
+          - domain_list
+        - - '1738983985854'
+          - domain_list
+        - - '1738913986804'
+          - domain_list
+      height: 246
+      id: '1738987022560'
+      position:
+        x: 1242
+        y: 457.5
+      positionAbsolute:
+        x: 1242
+        y: 457.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: 69596d97-ed44-4b96-8015-32e7cfd07599
+            value: ''
+            varType: object
+            variable_selector:
+            - '1738987022560'
+            - domain
+          - comparison_operator: not empty
+            id: 1cdfadf9-85b7-4513-b935-9e3a2b417a4a
+            value: ''
+            varType: object
+            variable_selector:
+            - '1738987022560'
+            - domain
+          id: 'true'
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 151
+      id: '1738989691547'
+      position:
+        x: 1545
+        y: 457.5
+      positionAbsolute:
+        x: 1545
+        y: 457.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1738987022560'
+          - domain
+          variable: domain
+        - value_selector:
+          - '1738987022560'
+          - ip
+          variable: ip
+        selected: false
+        title: 结束
+        type: end
+      height: 115
+      id: '1739000477769'
+      position:
+        x: 1884.5339795987452
+        y: 526.1226654549376
+      positionAbsolute:
+        x: 1884.5339795987452
+        y: 526.1226654549376
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 0.005317385368982741
+      y: -157.1221311011434
+      zoom: 0.870550563296124

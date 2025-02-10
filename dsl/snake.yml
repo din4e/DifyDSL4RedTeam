@@ -1,0 +1,901 @@
+app:
+  description: ''
+  icon: 🐍
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: snake
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 8fffb4d1-5bc5-48c8-967a-5139f00e5c06
+    name: app_secret
+    selector:
+    - env
+    - app_secret
+    value: ''
+    value_type: secret
+  - description: ''
+    id: caefe51e-9939-4acf-9b28-79c531662a25
+    name: app_id
+    selector:
+    - env
+    - app_id
+    value: ''
+    value_type: secret
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1738747046064-source-1738751180258-target
+      selected: false
+      source: '1738747046064'
+      sourceHandle: source
+      target: '1738751180258'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1738753249170'
+        sourceType: tool
+        targetType: variable-aggregator
+      id: 1738753355371-source-1738803505703-target
+      selected: false
+      source: '1738753355371'
+      sourceHandle: source
+      target: '1738803505703'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        sourceType: iteration
+        targetType: code
+      id: 1738753249170-source-1738804793502-target
+      selected: false
+      source: '1738753249170'
+      sourceHandle: source
+      target: '1738804793502'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1738751180258-source-1738752368131-target
+      selected: false
+      source: '1738751180258'
+      sourceHandle: source
+      target: '1738752368131'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1738752368131-source-1738753249170-target
+      selected: false
+      source: '1738752368131'
+      sourceHandle: source
+      target: '1738753249170'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 1738807692169-source-1738810417484-target
+      selected: false
+      source: '1738807692169'
+      sourceHandle: source
+      target: '1738810417484'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: tool
+      id: 1738804793502-source-1738810087926-target
+      selected: false
+      source: '1738804793502'
+      sourceHandle: source
+      target: '1738810087926'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: end
+      id: 1738810417484-fail-branch-1738811553860-target
+      selected: false
+      source: '1738810417484'
+      sourceHandle: fail-branch
+      target: '1738811553860'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: http-request
+      id: 1738747046064-source-1738827707551-target
+      selected: false
+      source: '1738747046064'
+      sourceHandle: source
+      target: '1738827707551'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: code
+      id: 1738827707551-source-1738827901638-target
+      selected: false
+      source: '1738827707551'
+      sourceHandle: source
+      target: '1738827901638'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: http-request
+      id: 1738827901638-source-1738807692169-target
+      selected: false
+      source: '1738827901638'
+      sourceHandle: source
+      target: '1738807692169'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: end
+      id: 1738827901638-fail-branch-1738828321822-target
+      selected: false
+      source: '1738827901638'
+      sourceHandle: fail-branch
+      target: '1738828321822'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: end
+      id: 1738831987090-source-1738747096441-target
+      source: '1738831987090'
+      sourceHandle: source
+      target: '1738747096441'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: code
+      id: 1738810087926-source-1738832856915-target
+      source: '1738810087926'
+      sourceHandle: source
+      target: '1738832856915'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: tool
+      id: 1738832856915-source-1738831987090-target
+      source: '1738832856915'
+      sourceHandle: source
+      target: '1738831987090'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: iteration
+      id: 1738810417484-source-1738753249170-target
+      source: '1738810417484'
+      sourceHandle: source
+      target: '1738753249170'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        iteration_id: '1738753249170'
+        sourceType: iteration-start
+        targetType: tool
+      id: 1738753249170start-source-1739000585822-target
+      source: 1738753249170start
+      sourceHandle: source
+      target: '1739000585822'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        iteration_id: '1738753249170'
+        sourceType: tool
+        targetType: tool
+      id: 1739000585822-source-1738753355371-target
+      source: '1739000585822'
+      sourceHandle: source
+      target: '1738753355371'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: HVV项目
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: project_name
+        - label: 目标列表
+          max_length: 500
+          options: []
+          required: true
+          type: paragraph
+          variable: target_list
+      height: 115
+      id: '1738747046064'
+      position:
+        x: 30
+        y: 333
+      positionAbsolute:
+        x: 30
+        y: 333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1738810087926'
+          - json
+          variable: json
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1738747096441'
+      position:
+        x: 3481
+        y: 333
+      positionAbsolute:
+        x: 3481
+        y: 333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-chat
+          provider: deepseek
+        prompt_template:
+        - id: f57dfc70-8b48-40f6-baa4-a8086fdb20de
+          role: system
+          text: 将{{#1738747046064.target_list#}}的单位名输出，去除序号等并使用“,”分割后输出。
+        selected: false
+        title: 目标清单处理
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: '1738751180258'
+      position:
+        x: 939
+        y: 333
+      positionAbsolute:
+        x: 939
+        y: 333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(targets: str) -> dict:\n    target_list = []\n    try:\n \
+          \       target_list = targets.split(\",\")\n        print(target_list)\n\
+          \        return {\"msg\":\"success\",\"target_list\":target_list}\n    except\
+          \ Exception as e:\n        print(f\"{e}\")\n        return {\"msg\":f\"\
+          {e}\",\"target_list\":target_list}"
+        code_language: python3
+        desc: ''
+        outputs:
+          msg:
+            children: null
+            type: string
+          target_list:
+            children: null
+            type: array[string]
+        selected: false
+        title: 目标列表生成
+        type: code
+        variables:
+        - value_selector:
+          - '1738751180258'
+          - text
+          variable: targets
+      height: 53
+      id: '1738752368131'
+      position:
+        x: 1242
+        y: 333
+      positionAbsolute:
+        x: 1242
+        y: 333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        error_handle_mode: continue-on-error
+        height: 266
+        is_parallel: true
+        iterator_selector:
+        - '1738752368131'
+        - target_list
+        output_selector:
+        - '1738753355371'
+        - json
+        output_type: array[object]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1738753249170start
+        title: 文档创建循环
+        type: iteration
+        width: 663.5714285714282
+      height: 266
+      id: '1738753249170'
+      position:
+        x: 1545
+        y: 333
+      positionAbsolute:
+        x: 1545
+        y: 333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 664
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1738753249170start
+      parentId: '1738753249170'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 1569
+        y: 401
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1738753249170'
+        provider_id: feishu_document
+        provider_name: feishu_document
+        provider_type: builtin
+        selected: false
+        title: 创建文档
+        tool_configurations: {}
+        tool_label: 创建飞书文档
+        tool_name: create_document
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1738753249170.item#}} {{#1738753249170.index#}}{{#1739000585822.text#}}'
+          folder_token:
+            type: mixed
+            value: '{{#1738810417484.folder_token#}}'
+          title:
+            type: mixed
+            value: '{{#1738753249170.item#}}'
+        type: tool
+      height: 53
+      id: '1738753355371'
+      parentId: '1738753249170'
+      position:
+        x: 365.6992158171481
+        y: 65
+      positionAbsolute:
+        x: 1910.6992158171481
+        y: 398
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        advanced_settings:
+          group_enabled: false
+          groups:
+          - groupId: 422ac8a8-0435-4914-868d-4b605ccae9fd
+            group_name: Group1
+            output_type: array[object]
+            variables:
+            - - '1738753355371'
+              - json
+        desc: ''
+        isInIteration: true
+        iteration_id: '1738753249170'
+        output_type: array[object]
+        selected: false
+        title: 结果聚合
+        type: variable-aggregator
+        variables:
+        - - '1738753355371'
+          - json
+      height: 106
+      id: '1738803505703'
+      parentId: '1738753249170'
+      position:
+        x: 309.7263872479177
+        y: 140
+      positionAbsolute:
+        x: 1854.7263872479177
+        y: 473
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "def main(json_dict: dict) -> dict:\n    result = \"\"\n    for index,item\
+          \ in enumerate(json_dict):\n        result+=f\"{index+1}. [{item.get('title')}]({item.get('url')})\\\
+          n\"\n    return {\n        \"result\": result,\n    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 获取文档列表
+        type: code
+        variables:
+        - value_selector:
+          - '1738753249170'
+          - output
+          variable: json_dict
+      height: 53
+      id: '1738804793502'
+      position:
+        x: 2269
+        y: 333
+      positionAbsolute:
+        x: 2269
+        y: 333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config:
+            api_key: '{{#1738827901638.tenant_access_token#}}'
+            type: bearer
+          type: api-key
+        body:
+          data:
+          - id: key-value-65
+            key: ''
+            type: text
+            value: '{
+
+              "name":"{{#1738747046064.project_name#}}",
+
+              "folder_token":""
+
+              }'
+          type: json
+        desc: ''
+        headers: Content-Type:application/json; charset=utf-8
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: false
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 创建目录.1
+        type: http-request
+        url: https://open.feishu.cn/open-apis/drive/v1/files/create_folder
+        variables: []
+      height: 125
+      id: '1738807692169'
+      position:
+        x: 939
+        y: 470
+      positionAbsolute:
+        x: 939
+        y: 470
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: feishu_document
+        provider_name: feishu_document
+        provider_type: builtin
+        selected: false
+        title: 创建目录文档
+        tool_configurations: {}
+        tool_label: 创建飞书文档
+        tool_name: create_document
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1738804793502.result#}}'
+          folder_token:
+            type: mixed
+            value: '{{#1738810417484.folder_token#}}'
+          title:
+            type: mixed
+            value: '{{#1738747046064.project_name#}}【总】'
+        type: tool
+      height: 53
+      id: '1738810087926'
+      position:
+        x: 2572
+        y: 333
+      positionAbsolute:
+        x: 2572
+        y: 333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(body: str) -> dict:\n    body_data = json.loads(body)\n  \
+          \  token = body_data[\"data\"][\"token\"]\n    url = body_data[\"data\"\
+          ][\"url\"]\n    return {\n        \"folder_token\": token,\n        \"folder_url\"\
+          :   url\n    }\n"
+        code_language: python3
+        desc: ''
+        error_strategy: fail-branch
+        outputs:
+          folder_token:
+            children: null
+            type: string
+          folder_url:
+            children: null
+            type: string
+        selected: false
+        title: 创建目录.2
+        type: code
+        variables:
+        - value_selector:
+          - '1738807692169'
+          - body
+          variable: body
+      height: 89
+      id: '1738810417484'
+      position:
+        x: 1242
+        y: 466
+      positionAbsolute:
+        x: 1242
+        y: 466
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: 排查API-key
+        type: end
+      height: 53
+      id: '1738811553860'
+      position:
+        x: 1755.5
+        y: 639
+      positionAbsolute:
+        x: 1755.5
+        y: 639
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-94
+            key: ''
+            type: text
+            value: '{
+
+              "app_id":"{{#env.app_id#}}",
+
+              "app_secret":"{{#env.app_secret#}}"
+
+              }'
+          type: json
+        desc: ''
+        headers: Content-Type:application/json
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: false
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 获取应用token.1
+        type: http-request
+        url: https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal
+        variables: []
+      height: 125
+      id: '1738827707551'
+      position:
+        x: 333
+        y: 484
+      positionAbsolute:
+        x: 333
+        y: 484
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(body: str) -> dict:\n    body_data = json.loads(body)\n  \
+          \  tenant_access_token = body_data[\"tenant_access_token\"]\n    return\
+          \ {\n        \"tenant_access_token\": tenant_access_token\n    }\n"
+        code_language: python3
+        desc: ''
+        error_strategy: fail-branch
+        outputs:
+          tenant_access_token:
+            children: null
+            type: string
+        selected: false
+        title: 获取应用token.2
+        type: code
+        variables:
+        - value_selector:
+          - '1738827707551'
+          - body
+          variable: body
+      height: 89
+      id: '1738827901638'
+      position:
+        x: 636
+        y: 484
+      positionAbsolute:
+        x: 636
+        y: 484
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: 结束 3
+        type: end
+      height: 53
+      id: '1738828321822'
+      position:
+        x: 939
+        y: 635
+      positionAbsolute:
+        x: 939
+        y: 635
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        provider_id: feishu
+        provider_name: feishu
+        provider_type: builtin
+        selected: true
+        title: 发送群消息
+        tool_configurations:
+          hook_key: {{}}
+        tool_label: 发送群消息
+        tool_name: feishu_group_bot
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1738747046064.project_name#}}文档创建完成，地址：{{#1738832856915.doc_url#}}'
+        type: tool
+      height: 89
+      id: '1738831987090'
+      position:
+        x: 3178
+        y: 333
+      positionAbsolute:
+        x: 3178
+        y: 333
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(docjson) -> dict:\n    return {\n        \"doc_url\": docjson[0].get('url'),\n\
+          \    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          doc_url:
+            children: null
+            type: string
+        selected: false
+        title: 获得url
+        type: code
+        variables:
+        - value_selector:
+          - '1738810087926'
+          - json
+          variable: docjson
+      height: 53
+      id: '1738832856915'
+      position:
+        x: 2875
+        y: 333
+      positionAbsolute:
+        x: 2875
+        y: 333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        isInIteration: true
+        iteration_id: '1738753249170'
+        provider_id: 345be0c3-5f33-4a4f-8e70-2b7047f34df4
+        provider_name: 小蜜蜂
+        provider_type: workflow
+        selected: false
+        title: bee信息收集
+        tool_configurations:
+          target_name: ''
+        tool_label: 小蜜蜂
+        tool_name: bee
+        tool_parameters:
+          target_name:
+            type: mixed
+            value: '{{#1738753249170.item#}}'
+        type: tool
+      height: 89
+      id: '1739000585822'
+      parentId: '1738753249170'
+      position:
+        x: 37.82951526715033
+        y: 139.35725689694846
+      positionAbsolute:
+        x: 1582.8295152671503
+        y: 472.35725689694846
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    viewport:
+      x: -1725.7499999999998
+      y: 280.75
+      zoom: 0.7
