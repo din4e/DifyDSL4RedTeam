@@ -1,6 +1,6 @@
-# DifyDSL4RadTeam
+# DifyDSL4RedTeam
 
-收集一些红队 Dify Workflow。
+收集一些红队 Dify Workflow，在 AI 浪潮下赋能红队自动化。
 
 > 硅基流动注册邀请码 [YWEJ5632](https://cloud.siliconflow.cn/i/YWEJ5632)，实在是谢谢啦😙😙😙😙。
 

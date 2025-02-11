@@ -1,9 +1,9 @@
 app:
   description: 获取目标的ip，域名，小程序，输出格式
-  icon: 🤖
+  icon: 🐝
   icon_background: '#FFEAD5'
   mode: workflow
-  name: 小蜜蜂
+  name: bee
   use_icon_as_answer_icon: false
 kind: app
 version: 0.1.5
@@ -47,7 +47,7 @@ workflow:
     name: quake_api_key
     selector:
     - env
-    - quake_api
+    - quake_api_key
     value: ''
     value_type: secret
   features:
@@ -133,30 +133,6 @@ workflow:
       zIndex: 0
     - data:
         isInIteration: false
-        sourceType: code
-        targetType: http-request
-      id: 17389152715050-source-17389152728020-target
-      selected: false
-      source: '17389152715050'
-      sourceHandle: source
-      target: '17389152728020'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        sourceType: http-request
-        targetType: code
-      id: 17389152728020-source-17389152741320-target
-      selected: false
-      source: '17389152728020'
-      sourceHandle: source
-      target: '17389152741320'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
         sourceType: start
         targetType: code
       id: 1738897615154-source-17389152715050-target
@@ -172,6 +148,7 @@ workflow:
         sourceType: start
         targetType: http-request
       id: 1738897615154-source-1738981219497-target
+      selected: false
       source: '1738897615154'
       sourceHandle: source
       target: '1738981219497'
@@ -183,6 +160,7 @@ workflow:
         sourceType: http-request
         targetType: code
       id: 1738981219497-source-1738983985854-target
+      selected: false
       source: '1738981219497'
       sourceHandle: source
       target: '1738983985854'
@@ -191,53 +169,10 @@ workflow:
       zIndex: 0
     - data:
         isInIteration: false
-        sourceType: code
-        targetType: variable-aggregator
-      id: 17389152741320-source-1738987022560-target
-      source: '17389152741320'
-      sourceHandle: source
-      target: '1738987022560'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        sourceType: code
-        targetType: variable-aggregator
-      id: 1738913986804-source-1738987022560-target
-      source: '1738913986804'
-      sourceHandle: source
-      target: '1738987022560'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        sourceType: code
-        targetType: variable-aggregator
-      id: 1738983985854-source-1738987022560-target
-      source: '1738983985854'
-      sourceHandle: source
-      target: '1738987022560'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        sourceType: variable-aggregator
-        targetType: if-else
-      id: 1738987022560-source-1738989691547-target
-      source: '1738987022560'
-      sourceHandle: source
-      target: '1738989691547'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
         sourceType: if-else
         targetType: end
       id: 1738989691547-true-1739000477769-target
+      selected: false
       source: '1738989691547'
       sourceHandle: 'true'
       target: '1739000477769'
@@ -249,9 +184,54 @@ workflow:
         sourceType: if-else
         targetType: end
       id: 1738989691547-false-1739000477769-target
+      selected: false
       source: '1738989691547'
       sourceHandle: 'false'
       target: '1739000477769'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: code
+      id: 1738913986804-source-1739242770386-target
+      source: '1738913986804'
+      sourceHandle: source
+      target: '1739242770386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: code
+      id: 1738983985854-source-1739242770386-target
+      source: '1738983985854'
+      sourceHandle: source
+      target: '1739242770386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: code
+      id: 17389152715050-source-1739242770386-target
+      source: '17389152715050'
+      sourceHandle: source
+      target: '1739242770386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1739242770386-source-1738989691547-target
+      source: '1739242770386'
+      sourceHandle: source
+      target: '1738989691547'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -314,7 +294,7 @@ workflow:
 
           start_time:2025-02-06
 
-          page_size:100'
+          page_size:{{#env.page_size#}}'
         retry_config:
           max_retries: 1
           retry_enabled: false
@@ -332,10 +312,10 @@ workflow:
       id: '1738897712777'
       position:
         x: 636
-        y: 457.5
+        y: 272.5
       positionAbsolute:
         x: 636
-        y: 457.5
+        y: 272.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -356,7 +336,7 @@ workflow:
           search_list:
             children: null
             type: string
-        selected: true
+        selected: false
         title: Hunter 前处理
         type: code
         variables:
@@ -368,11 +348,11 @@ workflow:
       id: '1738912539615'
       position:
         x: 333
-        y: 457.5
+        y: 272.5
       positionAbsolute:
         x: 333
-        y: 457.5
-      selected: true
+        y: 272.5
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -413,64 +393,9 @@ workflow:
       id: '1738913986804'
       position:
         x: 939
-        y: 457.5
+        y: 272.5
       positionAbsolute:
         x: 939
-        y: 457.5
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 243
-    - data:
-        code: "def main(target_name: str, day_range:int) -> dict:\n    import datetime\n\
-          \    search = f'icp_keywords:\"{target_name}\"'\n    time_now = datetime.datetime.now()\n\
-          \    start_time = (time_now-datetime.timedelta(days=day_range)).strftime(\"\
-          %Y-%m-%d %H:%M:%S\")\n    end_time = time_now.strftime(\"%Y-%m-%d %H:%M:%S\"\
-          )\n\n\n    return {\n        \"search_list\": search,\n        \"q_start_date\"\
-          : start_time,\n        \"q_end_date\": end_time,\n    }\n"
-        code_language: python3
-        default_value:
-        - key: search_list
-          type: string
-          value: ''
-        - key: q_start_date
-          type: string
-          value: ''
-        - key: q_end_date
-          type: string
-          value: ''
-        desc: ''
-        error_strategy: default-value
-        outputs:
-          q_end_date:
-            children: null
-            type: string
-          q_start_date:
-            children: null
-            type: string
-          search_list:
-            children: null
-            type: string
-        selected: false
-        title: Quake 前处理
-        type: code
-        variables:
-        - value_selector:
-          - '1738897615154'
-          - target_name
-          variable: target_name
-        - value_selector:
-          - env
-          - day_range
-          variable: day_range
-      height: 89
-      id: '17389152715050'
-      position:
-        x: 333
-        y: 272.5
-      positionAbsolute:
-        x: 333
         y: 272.5
       selected: false
       sourcePosition: right
@@ -478,66 +403,21 @@ workflow:
       type: custom
       width: 243
     - data:
-        authorization:
-          config: null
-          type: no-auth
-        body:
-          data:
-          - id: key-value-10
-            key: ''
-            type: text
-            value: '{ "query": "{{#17389152715050.search_list#}}", "start": 0, "size":
-              1, "start_time": "{{#17389152715050.q_start_date#}}", "end_time": "{{#17389152715050.q_end_date#}}","aggregation_list":["ip","domain"]}'
-          type: raw-text
-        default_value:
-        - key: body
-          type: string
-          value: '""'
-        - key: status_code
-          type: number
-          value: 0
-        - key: headers
-          type: object
-          value: '{}'
-        desc: ''
-        error_strategy: default-value
-        headers: 'X-QuakeToken:{{#env.quake_api_key#}}
-
-          Content-Type:application/json'
-        method: POST
-        params: ''
-        retry_config:
-          max_retries: 1
-          retry_enabled: false
-          retry_interval: 815
-        selected: false
-        timeout:
-          max_connect_timeout: 0
-          max_read_timeout: 0
-          max_write_timeout: 0
-        title: Quake
-        type: http-request
-        url: https://quake.360.net/api/v3/search/quake_service
-        variables: []
-      height: 145
-      id: '17389152728020'
-      position:
-        x: 636
-        y: 272.5
-      positionAbsolute:
-        x: 636
-        y: 272.5
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 243
-    - data:
-        code: "def main(body: str) -> dict:\n    body_data = json.loads(body)   \n\
-          \    data = body_data[\"data\"]\n    domain_set = set()\n    ip_set = set()\n\
-          \    for item in data:\n        domain_set.add(item.get(\"domain\", \"\"\
-          ))\n        ip_set.add(item.get(\"ip\", \"\"))\n    \n    return {\n   \
-          \     \"domain_list\": list(domain_set),\n        \"ip_list\": list(ip_set)\n\
+        code: "def main(target_name: str, day_range:int, api_key:str, size:int) ->\
+          \ dict:\n    import datetime\n    import requests\n    search = f'icp_keywords:\"\
+          {target_name}\"'\n    time_now = datetime.datetime.now()\n    start_time\
+          \ = (time_now-datetime.timedelta(days=day_range)).strftime(\"%Y-%m-%d %H:%M:%S\"\
+          )\n    end_time = time_now.strftime(\"%Y-%m-%d %H:%M:%S\")\n\n    headers\
+          \ = {\n        \"X-QuakeToken\": api_key,\n        \"Content-Type\": \"\
+          application/json\"\n    }\n\n    data = {\n        \"query\": search,\n\
+          \        \"start\": 0,\n        \"size\": size,\n        \"start_time\"\
+          : start_time,\n        \"end_time\": end_time,\n    }\n\n    response =\
+          \ requests.post(\n        url=\"https://quake.360.net/api/v3/search/quake_service\"\
+          , headers=headers, json=data\n    )\n\n    data = response.json()\n    data\
+          \ = data.get(\"data\", [])\n    domain_set = set()\n    ip_set = set()\n\
+          \    \n    for item in data:\n        domain_set.add(item.get(\"domain\"\
+          , \"\"))\n        ip_set.add(item.get(\"ip\", \"\"))\n\n    return {\n \
+          \       \"domain_list\":list(domain_set),\n        \"ip_list\": list(ip_set),\n\
           \    }"
         code_language: python3
         default_value:
@@ -557,21 +437,33 @@ workflow:
             children: null
             type: array[string]
         selected: false
-        title: Quake 后处理
+        title: Quake
         type: code
         variables:
         - value_selector:
-          - '17389152728020'
-          - body
-          variable: body
+          - '1738897615154'
+          - target_name
+          variable: target_name
+        - value_selector:
+          - env
+          - day_range
+          variable: day_range
+        - value_selector:
+          - env
+          - quake_api_key
+          variable: api_key
+        - value_selector:
+          - env
+          - page_size
+          variable: size
       height: 89
-      id: '17389152741320'
+      id: '17389152715050'
       position:
         x: 939
-        y: 272.5
+        y: 578.5
       positionAbsolute:
         x: 939
-        y: 272.5
+        y: 578.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -620,11 +512,11 @@ workflow:
       height: 129
       id: '1738981219497'
       position:
-        x: 636
-        y: 642.5
+        x: 643.384489424981
+        y: 427.1415434750784
       positionAbsolute:
-        x: 636
-        y: 642.5
+        x: 643.384489424981
+        y: 427.1415434750784
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -672,59 +564,10 @@ workflow:
       id: '1738983985854'
       position:
         x: 939
-        y: 634.5
+        y: 443.7857142857142
       positionAbsolute:
         x: 939
-        y: 634.5
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 243
-    - data:
-        advanced_settings:
-          group_enabled: true
-          groups:
-          - groupId: 81988942-07c7-4aa9-a3bf-5727fe0a591c
-            group_name: domain
-            output_type: array[string]
-            variables:
-            - - '17389152741320'
-              - domain_list
-            - - '1738983985854'
-              - domain_list
-            - - '1738913986804'
-              - domain_list
-          - groupId: 483643d3-d1e1-4e50-aada-7a3a0998b2b4
-            group_name: ip
-            output_type: array[string]
-            variables:
-            - - '1738983985854'
-              - ip_list
-            - - '17389152741320'
-              - ip_list
-            - - '1738913986804'
-              - ip_list
-        desc: ''
-        output_type: array[string]
-        selected: false
-        title: 变量聚合器
-        type: variable-aggregator
-        variables:
-        - - '17389152741320'
-          - domain_list
-        - - '1738983985854'
-          - domain_list
-        - - '1738913986804'
-          - domain_list
-      height: 246
-      id: '1738987022560'
-      position:
-        x: 1242
-        y: 457.5
-      positionAbsolute:
-        x: 1242
-        y: 457.5
+        y: 443.7857142857142
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -737,17 +580,17 @@ workflow:
           - comparison_operator: not empty
             id: 69596d97-ed44-4b96-8015-32e7cfd07599
             value: ''
-            varType: object
+            varType: array[string]
             variable_selector:
-            - '1738987022560'
-            - domain
+            - '1739242770386'
+            - domain_list
           - comparison_operator: not empty
             id: 1cdfadf9-85b7-4513-b935-9e3a2b417a4a
             value: ''
-            varType: object
+            varType: array[string]
             variable_selector:
-            - '1738987022560'
-            - domain
+            - '1739242770386'
+            - ip_list
           id: 'true'
           logical_operator: or
         desc: ''
@@ -757,11 +600,11 @@ workflow:
       height: 151
       id: '1738989691547'
       position:
-        x: 1545
-        y: 457.5
+        x: 1528.1370159307173
+        y: 468.4285714285714
       positionAbsolute:
-        x: 1545
-        y: 457.5
+        x: 1528.1370159307173
+        y: 468.4285714285714
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -771,12 +614,12 @@ workflow:
         desc: ''
         outputs:
         - value_selector:
-          - '1738987022560'
-          - domain
+          - '1739242770386'
+          - domain_list
           variable: domain
         - value_selector:
-          - '1738987022560'
-          - ip
+          - '1739242770386'
+          - ip_list
           variable: ip
         selected: false
         title: 结束
@@ -784,17 +627,71 @@ workflow:
       height: 115
       id: '1739000477769'
       position:
-        x: 1884.5339795987452
-        y: 526.1226654549376
+        x: 2016.5787851109894
+        y: 459.8382851949733
       positionAbsolute:
-        x: 1884.5339795987452
-        y: 526.1226654549376
+        x: 2016.5787851109894
+        y: 459.8382851949733
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(d1: list, d2: list, d3: list, i1: list, i2: list, i3: list)\
+          \ -> dict:\n    return {\n        \"domain_list\": list(set(d1)|set(d2)|set(d3)),\n\
+          \        \"ip_list\": list(set(i1)|set(i2)|set(i3)),\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          domain_list:
+            children: null
+            type: array[string]
+          ip_list:
+            children: null
+            type: array[string]
+        selected: false
+        title: 去重
+        type: code
+        variables:
+        - value_selector:
+          - '1738913986804'
+          - domain_list
+          variable: d1
+        - value_selector:
+          - '1738983985854'
+          - domain_list
+          variable: d2
+        - value_selector:
+          - '17389152715050'
+          - domain_list
+          variable: d3
+        - value_selector:
+          - '1738913986804'
+          - ip_list
+          variable: i1
+        - value_selector:
+          - '1738983985854'
+          - ip_list
+          variable: i2
+        - value_selector:
+          - '17389152715050'
+          - ip_list
+          variable: i3
+      height: 53
+      id: '1739242770386'
+      position:
+        x: 1228.0714285714284
+        y: 468.4285714285714
+      positionAbsolute:
+        x: 1228.0714285714284
+        y: 468.4285714285714
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 243
     viewport:
-      x: 0.005317385368982741
-      y: -157.1221311011434
-      zoom: 0.870550563296124
+      x: -110.86038530421456
+      y: -133.1225917448843
+      zoom: 0.8705505632961245
