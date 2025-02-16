@@ -265,10 +265,10 @@ workflow:
         iteration_id: '1738753249170'
         sourceType: iteration-start
         targetType: tool
-      id: 1738753249170start-source-1739000585822-target
+      id: 1738753249170start-source-1739685639690-target
       source: 1738753249170start
       sourceHandle: source
-      target: '1739000585822'
+      target: '1739685639690'
       targetHandle: target
       type: custom
       zIndex: 1002
@@ -277,8 +277,8 @@ workflow:
         iteration_id: '1738753249170'
         sourceType: tool
         targetType: tool
-      id: 1739000585822-source-1738753355371-target
-      source: '1739000585822'
+      id: 1739685639690-source-1738753355371-target
+      source: '1739685639690'
       sourceHandle: source
       target: '1738753355371'
       targetHandle: target
@@ -348,12 +348,19 @@ workflow:
           completion_params:
             temperature: 0.7
           mode: chat
-          name: deepseek-chat
-          provider: deepseek
+          name: Qwen/Qwen2-VL-72B-Instruct
+          provider: siliconflow
         prompt_template:
         - id: f57dfc70-8b48-40f6-baa4-a8086fdb20de
           role: system
-          text: 将{{#1738747046064.target_list#}}的单位名输出，去除序号等并使用“,”分割后输出。
+          text: '将输入字符中的单位名整理出来，要求如下：
+
+            1. 只包含完整的单位名称或者企业名称；
+
+            2. 去除序号等并使用“,”分割后输出。'
+        - id: 05d8f266-fd2a-4c25-8052-689278480ddf
+          role: user
+          text: '{{#1738747046064.target_list#}}'
         selected: false
         title: 目标清单处理
         type: llm
@@ -368,7 +375,7 @@ workflow:
       positionAbsolute:
         x: 939
         y: 333
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -478,7 +485,7 @@ workflow:
         tool_parameters:
           content:
             type: mixed
-            value: '{{#1738753249170.item#}} {{#1738753249170.index#}}{{#1739000585822.text#}}'
+            value: '{{#1739685639690.text#}}'
           folder_token:
             type: mixed
             value: '{{#1738810417484.folder_token#}}'
@@ -808,10 +815,10 @@ workflow:
         provider_id: feishu
         provider_name: feishu
         provider_type: builtin
-        selected: true
+        selected: false
         title: 发送群消息
         tool_configurations:
-          hook_key: {{}}
+          hook_key: d3e*********************************
         tool_label: 发送群消息
         tool_name: feishu_group_bot
         tool_parameters:
@@ -827,7 +834,7 @@ workflow:
       positionAbsolute:
         x: 3178
         y: 333
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -866,29 +873,28 @@ workflow:
         desc: ''
         isInIteration: true
         iteration_id: '1738753249170'
-        provider_id: 345be0c3-5f33-4a4f-8e70-2b7047f34df4
-        provider_name: 小蜜蜂
+        provider_id: bea0c06f-568a-4627-bba4-67378f9b1d77
+        provider_name: bee
         provider_type: workflow
         selected: false
-        title: bee信息收集
-        tool_configurations:
-          target_name: ''
-        tool_label: 小蜜蜂
-        tool_name: bee
+        title: bee
+        tool_configurations: {}
+        tool_label: bee
+        tool_name: get_assets
         tool_parameters:
           target_name:
             type: mixed
             value: '{{#1738753249170.item#}}'
         type: tool
-      height: 89
-      id: '1739000585822'
+      height: 53
+      id: '1739685639690'
       parentId: '1738753249170'
       position:
-        x: 37.82951526715033
-        y: 139.35725689694846
+        x: 95.66526479185814
+        y: 66.75635633814841
       positionAbsolute:
-        x: 1582.8295152671503
-        y: 472.35725689694846
+        x: 1640.6652647918581
+        y: 399.7563563381484
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -896,6 +902,6 @@ workflow:
       width: 243
       zIndex: 1002
     viewport:
-      x: -1725.7499999999998
-      y: 280.75
-      zoom: 0.7
+      x: -563.4043254371886
+      y: 0.9458342540011415
+      zoom: 0.923655537541026
