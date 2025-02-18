@@ -11,6 +11,14 @@ workflow:
   conversation_variables: []
   environment_variables:
   - description: ''
+    id: 86c4d3fb-1662-4c7c-bf2c-62c6bfce692f
+    name: timeout
+    selector:
+    - env
+    - timeout
+    value: 30
+    value_type: number
+  - description: ''
     id: 2b807061-bcfa-4147-8295-8864a0318671
     name: zero_sec_api
     selector:
@@ -32,7 +40,7 @@ workflow:
     selector:
     - env
     - page_size
-    value: 25
+    value: 20
     value_type: number
   - description: ''
     id: dd90723b-70d8-4fdc-babc-911ea5429eee
@@ -145,30 +153,6 @@ workflow:
       zIndex: 0
     - data:
         isInIteration: false
-        sourceType: start
-        targetType: http-request
-      id: 1738897615154-source-1738981219497-target
-      selected: false
-      source: '1738897615154'
-      sourceHandle: source
-      target: '1738981219497'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        sourceType: http-request
-        targetType: code
-      id: 1738981219497-source-1738983985854-target
-      selected: false
-      source: '1738981219497'
-      sourceHandle: source
-      target: '1738983985854'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
         sourceType: if-else
         targetType: end
       id: 1738989691547-true-1739000477769-target
@@ -206,17 +190,6 @@ workflow:
         isInIteration: false
         sourceType: code
         targetType: code
-      id: 1738983985854-source-1739242770386-target
-      source: '1738983985854'
-      sourceHandle: source
-      target: '1739242770386'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        sourceType: code
-        targetType: code
       id: 17389152715050-source-1739242770386-target
       source: '17389152715050'
       sourceHandle: source
@@ -232,6 +205,28 @@ workflow:
       source: '1739242770386'
       sourceHandle: source
       target: '1738989691547'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1738897615154-source-1739869071827-target
+      source: '1738897615154'
+      sourceHandle: source
+      target: '1739869071827'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: code
+      id: 1739869071827-source-1739242770386-target
+      source: '1739869071827'
+      sourceHandle: source
+      target: '1739242770386'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -301,9 +296,12 @@ workflow:
           retry_interval: 982
         selected: false
         timeout:
+          connect: 30
           max_connect_timeout: 0
           max_read_timeout: 0
           max_write_timeout: 0
+          read: 30
+          write: 30
         title: Hunter
         type: http-request
         url: https://hunter.qianxin.com/openApi/search
@@ -397,27 +395,27 @@ workflow:
       positionAbsolute:
         x: 939
         y: 272.5
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 243
     - data:
         code: "def main(target_name: str, day_range:int, api_key:str, size:int) ->\
-          \ dict:\n    import datetime\n    import requests\n    search = f'icp_keywords:\"\
-          {target_name}\"'\n    time_now = datetime.datetime.now()\n    start_time\
-          \ = (time_now-datetime.timedelta(days=day_range)).strftime(\"%Y-%m-%d %H:%M:%S\"\
-          )\n    end_time = time_now.strftime(\"%Y-%m-%d %H:%M:%S\")\n\n    headers\
-          \ = {\n        \"X-QuakeToken\": api_key,\n        \"Content-Type\": \"\
-          application/json\"\n    }\n\n    data = {\n        \"query\": search,\n\
+          \ dict:\n    import datetime\n    import requests\n    domain_set = set()\n\
+          \    ip_set = set()\n    search = f'icp_keywords:\"{target_name}\"'\n  \
+          \  time_now = datetime.datetime.now()\n    start_time = (time_now-datetime.timedelta(days=day_range)).strftime(\"\
+          %Y-%m-%d %H:%M:%S\")\n    end_time = time_now.strftime(\"%Y-%m-%d %H:%M:%S\"\
+          )\n\n    headers = {\n        \"X-QuakeToken\": api_key,\n        \"Content-Type\"\
+          : \"application/json\"\n    }\n\n    data = {\n        \"query\": search,\n\
           \        \"start\": 0,\n        \"size\": size,\n        \"start_time\"\
-          : start_time,\n        \"end_time\": end_time,\n    }\n\n    response =\
-          \ requests.post(\n        url=\"https://quake.360.net/api/v3/search/quake_service\"\
-          , headers=headers, json=data\n    )\n\n    data = response.json()\n    data\
-          \ = data.get(\"data\", [])\n    domain_set = set()\n    ip_set = set()\n\
-          \    \n    for item in data:\n        domain_set.add(item.get(\"domain\"\
-          , \"\"))\n        ip_set.add(item.get(\"ip\", \"\"))\n\n    return {\n \
-          \       \"domain_list\":list(domain_set),\n        \"ip_list\": list(ip_set),\n\
+          : start_time,\n        \"end_time\": end_time,\n    }\n    \n\n    response\
+          \ = requests.post(\n        url=\"https://quake.360.net/api/v3/search/quake_service\"\
+          , headers=headers, json=data,\n        timeout=30,\n    )\n    # 结果报错更换\
+          \ api\n    data = response.json()\n    data = data.get(\"data\", [])\n\n\
+          \    for item in data:\n        domain_set.add(item.get(\"domain\", \"\"\
+          ))\n        ip_set.add(item.get(\"ip\", \"\"))\n\n    return {\n       \
+          \ \"domain_list\":list(domain_set),\n        \"ip_list\": list(ip_set),\n\
           \    }"
         code_language: python3
         default_value:
@@ -460,114 +458,10 @@ workflow:
       id: '17389152715050'
       position:
         x: 939
-        y: 578.5
+        y: 401.5
       positionAbsolute:
         x: 939
-        y: 578.5
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 243
-    - data:
-        authorization:
-          config: null
-          type: no-auth
-        body:
-          data:
-          - id: key-value-1
-            key: ''
-            type: text
-            value: '{"query":"{{#1738897615154.target_name#}}", "query_type":"site",
-              "pagesize":{{#env.page_size#}}, "zone_key_id":"{{#env.zero_sec_api#}}"}'
-          type: raw-text
-        default_value:
-        - key: body
-          type: string
-          value: '""'
-        - key: status_code
-          type: number
-          value: 0
-        - key: headers
-          type: object
-          value: '{}'
-        desc: ''
-        error_strategy: default-value
-        headers: Content-Type:application/json
-        method: post
-        params: ''
-        retry_config:
-          max_retries: '1'
-          retry_enabled: false
-          retry_interval: 100
-        selected: false
-        timeout:
-          max_connect_timeout: 0
-          max_read_timeout: 0
-          max_write_timeout: 0
-        title: ZeroSec
-        type: http-request
-        url: https://0.zone/api/data/
-        variables: []
-      height: 129
-      id: '1738981219497'
-      position:
-        x: 643.384489424981
-        y: 427.1415434750784
-      positionAbsolute:
-        x: 643.384489424981
-        y: 427.1415434750784
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 243
-    - data:
-        code: "\ndef main(body: str) -> dict:\n    body_data = json.loads(body)  \
-          \ \n    data = body_data[\"data\"]\n    domain_set = set()\n    ip_set =\
-          \ set()\n    from urllib.parse import urlparse\n    import ipaddress\n \
-          \   def is_ip_address(hostname):\n        try:\n            # 尝试将 hostname\
-          \ 解析为 IP\n            ipaddress.ip_address(hostname)\n            return\
-          \ True\n        except ValueError:\n            # 如果解析失败，则不是 IP\n      \
-          \      return False\n    \n    for item in data:\n        hostname = urlparse(item.get(\"\
-          url\", \"\")).hostname\n        if is_ip_address(hostname):\n          \
-          \  ip_set.add(item.get(\"ip\", \"\"))    \n        else:\n            domain_set.add(hostname)\n\
-          \        ip_set.add(item.get(\"ip\", \"\"))\n\n    return {\n        \"\
-          domain_list\": list(domain_set),\n        \"ip_list\": list(ip_set)\n  \
-          \  }"
-        code_language: python3
-        default_value:
-        - key: domain_list
-          type: array[string]
-          value: '[]'
-        - key: ip_list
-          type: array[string]
-          value: '[]'
-        desc: ''
-        error_strategy: default-value
-        outputs:
-          domain_list:
-            children: null
-            type: array[string]
-          ip_list:
-            children: null
-            type: array[string]
-        selected: false
-        title: ZeroSec 后处理
-        type: code
-        variables:
-        - value_selector:
-          - '1738981219497'
-          - body
-          variable: body
-      height: 89
-      id: '1738983985854'
-      position:
-        x: 939
-        y: 443.7857142857142
-      positionAbsolute:
-        x: 939
-        y: 443.7857142857142
+        y: 401.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -600,11 +494,11 @@ workflow:
       height: 151
       id: '1738989691547'
       position:
-        x: 1528.1370159307173
-        y: 468.4285714285714
+        x: 1545
+        y: 401.5
       positionAbsolute:
-        x: 1528.1370159307173
-        y: 468.4285714285714
+        x: 1545
+        y: 401.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -627,11 +521,11 @@ workflow:
       height: 115
       id: '1739000477769'
       position:
-        x: 2016.5787851109894
-        y: 459.8382851949733
+        x: 1848
+        y: 401.5
       positionAbsolute:
-        x: 2016.5787851109894
-        y: 459.8382851949733
+        x: 1848
+        y: 401.5
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -639,8 +533,11 @@ workflow:
       width: 243
     - data:
         code: "def main(d1: list, d2: list, d3: list, i1: list, i2: list, i3: list)\
-          \ -> dict:\n    return {\n        \"domain_list\": list(set(d1)|set(d2)|set(d3)),\n\
-          \        \"ip_list\": list(set(i1)|set(i2)|set(i3)),\n    }\n"
+          \ -> dict:\n    domain_set = set(d1) | set(d2) | set(d3)\n    ip_set = set(i1)\
+          \ | set(i2) | set(i3)\n    \n    domain_list = sorted([d for d in domain_set\
+          \ if d])\n    ip_list = sorted([ip for ip in ip_set if ip])\n    \n    return\
+          \ {\n        \"domain_list\": domain_list,\n        \"ip_list\": ip_list,\n\
+          \    }"
         code_language: python3
         desc: ''
         outputs:
@@ -659,7 +556,7 @@ workflow:
           - domain_list
           variable: d1
         - value_selector:
-          - '1738983985854'
+          - '1739869071827'
           - domain_list
           variable: d2
         - value_selector:
@@ -671,7 +568,7 @@ workflow:
           - ip_list
           variable: i1
         - value_selector:
-          - '1738983985854'
+          - '1739869071827'
           - ip_list
           variable: i2
         - value_selector:
@@ -681,17 +578,87 @@ workflow:
       height: 53
       id: '1739242770386'
       position:
-        x: 1228.0714285714284
-        y: 468.4285714285714
+        x: 1242
+        y: 401.5
       positionAbsolute:
-        x: 1228.0714285714284
-        y: 468.4285714285714
+        x: 1242
+        y: 401.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(target_name: str, day_range:int, api_key:str, size:int) ->\
+          \ dict:\n    import requests\n    data = {\n        \"query\": f\"(company={target_name})||(group={target_name})\"\
+          ,\n        \"query_type\": \"site\",\n        \"page\": 1,\n        \"pagesize\"\
+          : size,\n        \"zone_key_id\": api_key\n    }\n\n    res = requests.post('https://0.zone/api/data/',\
+          \ json=data, timeout=30)\n\n    body_data = res.json()\n    data = body_data[\"\
+          data\"]\n    domain_set = set()\n    ip_set = set()\n    from urllib.parse\
+          \ import urlparse\n    import ipaddress\n    def is_ip_address(hostname):\n\
+          \        try:\n            # 尝试将 hostname 解析为 IP\n            ipaddress.ip_address(hostname)\n\
+          \            return True\n        except ValueError:\n            # 如果解析失败，则不是\
+          \ IP\n            return False\n    \n    for item in data:\n        hostname\
+          \ = urlparse(item.get(\"url\", \"\")).hostname\n        if is_ip_address(hostname):\n\
+          \            ip_set.add(item.get(\"ip\", \"\"))\n        else:\n       \
+          \     domain_set.add(hostname)\n        ip_set.add(item.get(\"ip\", \"\"\
+          ))\n\n    return {\n        \"domain_list\": list(domain_set) if domain_set\
+          \ else [],\n        \"ip_list\": list(ip_set) if ip_set else [],\n    }"
+        code_language: python3
+        default_value:
+        - key: domain_list
+          type: array[string]
+          value: '[]'
+        - key: ip_list
+          type: array[string]
+          value: '[]'
+        desc: ''
+        error_strategy: default-value
+        outputs:
+          domain_list:
+            children: null
+            type: array[string]
+          ip_list:
+            children: null
+            type: array[string]
+        retry_config:
+          max_retries: 3
+          retry_enabled: false
+          retry_interval: 1000
+        selected: false
+        title: ZeroSec
+        type: code
+        variables:
+        - value_selector:
+          - '1738897615154'
+          - target_name
+          variable: target_name
+        - value_selector:
+          - env
+          - day_range
+          variable: day_range
+        - value_selector:
+          - env
+          - zero_sec_api
+          variable: api_key
+        - value_selector:
+          - env
+          - page_size
+          variable: size
+      height: 89
+      id: '1739869071827'
+      position:
+        x: 939
+        y: 530.5
+      positionAbsolute:
+        x: 939
+        y: 530.5
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 243
     viewport:
-      x: -110.86038530421456
-      y: -133.1225917448843
-      zoom: 0.8705505632961245
+      x: 0
+      y: 0
+      zoom: 0.7
