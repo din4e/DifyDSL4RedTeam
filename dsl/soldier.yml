@@ -1,0 +1,389 @@
+app:
+  description: ''
+  icon: fencer
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: soldier
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1740018455298-source-1740018114593-target
+      source: '1740018455298'
+      sourceHandle: source
+      target: '1740018114593'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1740020869564-source-1740021179305-target
+      source: '1740020869564'
+      sourceHandle: source
+      target: '1740021179305'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: llm
+      id: 1740021179305-source-1740018455298-target
+      source: '1740021179305'
+      sourceHandle: source
+      target: '1740018455298'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1739971395477-source-1740024126662-target
+      source: '1739971395477'
+      sourceHandle: source
+      target: '1740024126662'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1740024126662-true-1740020869564-target
+      source: '1740024126662'
+      sourceHandle: 'true'
+      target: '1740020869564'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: end
+      id: 1740024126662-false-1740806159418-target
+      source: '1740024126662'
+      sourceHandle: 'false'
+      target: '1740806159418'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: input
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: input
+      height: 89
+      id: '1739971395477'
+      position:
+        x: 30
+        y: 262.5
+      positionAbsolute:
+        x: 30
+        y: 262.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1740018455298'
+          - text
+          variable: body
+        selected: false
+        title: 结束 2
+        type: end
+      height: 89
+      id: '1740018114593'
+      position:
+        x: 1545
+        y: 262.5
+      positionAbsolute:
+        x: 1545
+        y: 262.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Qwen/Qwen2.5-72B-Instruct
+          provider: siliconflow
+        prompt_template:
+        - id: 0bf751ce-aa90-45a5-a88d-849217f11c8a
+          role: system
+          text: '将扫描结果处理后发送，请用最精简的方式输出。
+
+            1. 输出 ip 及其开放端口，title和服务类型
+
+            2. 总扫描时间
+
+            3. 换行使用 "\n"
+
+            4. 如果没有实质性输出就输出“没有结果”'
+        - id: 2b3a1941-7fc0-4ad6-87da-e8c72e026550
+          role: user
+          text: '{{#1740021179305.result#}}'
+        selected: true
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: '1740018455298'
+      position:
+        x: 1242
+        y: 262.5
+      positionAbsolute:
+        x: 1242
+        y: 262.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: Qwen/Qwen2.5-14B-Instruct
+          provider: siliconflow
+        prompt_template:
+        - id: fb33284f-ec70-4a73-852c-f1fb05f9d953
+          role: system
+          text: '我被黑客攻击了，我在进行溯源，请针对给出的指令获取黑客对外攻击的ip地址：
+
+            1. 仅 ip 地址；'
+        - id: c3fdb326-73b5-47b0-96ea-0dd854164e8a
+          role: user
+          text: '{{#1739971395477.input#}}'
+        selected: false
+        title: LLM 3
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: '1740020869564'
+      position:
+        x: 636
+        y: 262.5
+      positionAbsolute:
+        x: 636
+        y: 262.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(input: str) -> dict:\n    import requests\n\n    import re\n\
+          \n    def extract_ip(string):\n        pattern = r'\\b(?:\\d{1,3}\\.){3}\\\
+          d{1,3}\\b'\n        matches = re.findall(pattern, string)\n        return\
+          \ matches\n\n    ip_addresses = extract_ip(input)\n\n    def post_api(url,\
+          \ data, headers=None):\n        try:\n            response = requests.post(url,\
+          \ json=data, headers=headers)\n            response.raise_for_status() \
+          \ # 如果响应状态码不是 200,则引发异常\n            return response.text  # 返回响应数据的 JSON\
+          \ 格式\n        except requests.exceptions.RequestException as e:\n      \
+          \      print(\"请求失败:\", e)\n            return None\n\n    # 示例用法\n    api_url\
+          \ = \"http://127.0.0.1:58080/execute\"\n    api_data = {\n        \"\
+          command\": \"./f\", # fscan\n        \"ip\": f\"{ip_addresses[0]}\"\n  \
+          \  }\n    api_headers = {\n        \"X-API-Key\": \"your-secret-api-key\"\
+          ,\n        \"Content-Type\": \"application/json\"\n    }\n\n    response_data\
+          \ = post_api(api_url, api_data, api_headers)\n    if response_data:\n  \
+          \      print(\"响应数据:\", response_data)\n    return {\n        \"result\"\
+          : response_data\n    }\n"
+        code_language: python3
+        default_value:
+        - key: result
+          type: string
+          value: ''
+        desc: ''
+        error_strategy: default-value
+        outputs:
+          result:
+            children: null
+            type: string
+        retry_config:
+          max_retries: 3
+          retry_enabled: false
+          retry_interval: 1000
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1739971395477'
+          - input
+          variable: input
+      height: 89
+      id: '1740021179305'
+      position:
+        x: 939
+        y: 262.5
+      positionAbsolute:
+        x: 939
+        y: 262.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: af4ba48a-9f05-4579-b602-de01ac7f1d01
+            value: 扫描
+            varType: string
+            variable_selector:
+            - '1739971395477'
+            - input
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 125
+      id: '1740024126662'
+      position:
+        x: 333
+        y: 262.5
+      positionAbsolute:
+        x: 333
+        y: 262.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        author: admin
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: false
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"可以修改为分类机器，目前只实现了Fscan
+          扫描","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1740806110778'
+      position:
+        x: 333
+        y: 138.9078033771531
+      positionAbsolute:
+        x: 333
+        y: 138.9078033771531
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        desc: ''
+        outputs:
+        - value_selector: []
+          variable: ''
+        selected: false
+        title: 结束 2
+        type: end
+      height: 53
+      id: '1740806159418'
+      position:
+        x: 636
+        y: 403.71521721304083
+      positionAbsolute:
+        x: 636
+        y: 403.71521721304083
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -1623.8743229191132
+      y: -283.53308453106547
+      zoom: 1.608177696995849
