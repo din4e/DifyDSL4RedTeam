@@ -78,7 +78,7 @@
     ```bash
     go init mod dify_api
     go build dify_api
-    chmod +x ./dify_api && ./dify
+    chmod +x ./dify_api && ./dify_api
     ```
 
 4. 修改执行 vps_ip 和对应 APIKey（步骤3设置的），启动 workflow api

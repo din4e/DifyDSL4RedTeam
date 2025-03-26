@@ -2,11 +2,11 @@
 
 输入目标名称，从 Hunter、 Quake、零零信安 获取目标域名和ip。
 
-![bee](../images/bee.png)
+![bee](../images/bee_v2.png)
 
 ## 操作步骤
 
-1. 复制 [DSL 连接](https://github.com/din4e/DifyDSL4RedTeam/blob/main/dsl/bee.yml)
+1. 复制 [DSL 连接](https://github.com/din4e/DifyDSL4RedTeam/blob/main/dsl/bee_v2.yml)
    
     ![bee step 1](../images/bee-p1.png)
 

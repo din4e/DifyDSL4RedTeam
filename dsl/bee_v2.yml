@@ -1,0 +1,569 @@
+app:
+  description: 获取目标的ip，域名，小程序，输出格式
+  icon: 🐝
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: bee
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 86c4d3fb-1662-4c7c-bf2c-62c6bfce692f
+    name: timeout
+    selector:
+    - env
+    - timeout
+    value: 45
+    value_type: number
+  - description: ''
+    id: 2b807061-bcfa-4147-8295-8864a0318671
+    name: zero_sec_api
+    selector:
+    - env
+    - zero_sec_api
+    value: ''
+    value_type: secret
+  - description: ''
+    id: 0115bbcf-417b-48f5-838d-997bcede0afd
+    name: day_range
+    selector:
+    - env
+    - day_range
+    value: 90
+    value_type: number
+  - description: ''
+    id: 8cc8f5f2-834a-4bd7-bc92-2ff27f917d2e
+    name: page_size
+    selector:
+    - env
+    - page_size
+    value: 10
+    value_type: number
+  - description: ''
+    id: dd90723b-70d8-4fdc-babc-911ea5429eee
+    name: hunter_api_key
+    selector:
+    - env
+    - hunter_api_key
+    value: ''
+    value_type: secret
+  - description: ''
+    id: 15f131cb-31fa-4c55-9c36-3b9968126a36
+    name: quake_api_key
+    selector:
+    - env
+    - quake_api_key
+    value: ''
+    value_type: secret
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: code
+      id: 1738913986804-source-1739242770386-target
+      selected: false
+      source: '1738913986804'
+      sourceHandle: source
+      target: '1739242770386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: code
+      id: 17389152715050-source-1739242770386-target
+      selected: false
+      source: '17389152715050'
+      sourceHandle: source
+      target: '1739242770386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: code
+      id: 1739869071827-source-1739242770386-target
+      selected: false
+      source: '1739869071827'
+      sourceHandle: source
+      target: '1739242770386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: end
+      id: 1739242770386-source-1739946668995-target
+      selected: false
+      source: '1739242770386'
+      sourceHandle: source
+      target: '1739946668995'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1738897615154-source-1739869071827-target
+      source: '1738897615154'
+      sourceHandle: source
+      target: '1739869071827'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1738897615154-source-17389152715050-target
+      source: '1738897615154'
+      sourceHandle: source
+      target: '17389152715050'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1738897615154-source-1738913986804-target
+      source: '1738897615154'
+      sourceHandle: source
+      target: '1738913986804'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 目标名称
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: target_name
+      height: 89
+      id: '1738897615154'
+      position:
+        x: 30
+        y: 244.5
+      positionAbsolute:
+        x: 30
+        y: 244.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(target_name: str, day_range:int, api_key:str, size:int, timeout:int)\
+          \ -> dict:\n    if api_key==\"\":\n        return {\n            \"domain_list\"\
+          : [], \"ip_list\": []\n        }\n    import datetime\n    import requests\n\
+          \    import base64\n    search = f'icp.name=\"{target_name}\"'\n    search_key\
+          \ = base64.urlsafe_b64encode(search.encode('utf-8')).decode('utf-8')\n\n\
+          \    domain_set = set()\n    ip_set = set()\n    end_time = datetime.datetime.now()\n\
+          \    start_time = end_time - datetime.timedelta(days=day_range)\n\n    url\
+          \ = f\"https://hunter.qianxin.com/openApi/search?api-key={api_key}&search={search_key}&page=1&page_size={size}&is_web=3&port_filter=false&start_time={start_time.date()}&end_time={end_time.date()}\"\
+          \n\n    response = requests.get(url=url, timeout=timeout)\n\n    body_data\
+          \ = response.json()  \n    data = body_data[\"data\"].get(\"arr\", [])\n\
+          \    domain_set = set()\n    ip_set = set()\n    for item in data:\n   \
+          \     domain_set.add(item.get(\"domain\", \"\"))\n        ip_set.add(item.get(\"\
+          ip\", \"\"))\n    \n    return {\n        \"domain_list\": list(domain_set),\n\
+          \        \"ip_list\": list(ip_set)\n    }"
+        code_language: python3
+        default_value:
+        - key: domain_list
+          type: array[string]
+          value: '[]'
+        - key: ip_list
+          type: array[string]
+          value: '[]'
+        desc: ''
+        error_strategy: default-value
+        outputs:
+          domain_list:
+            children: null
+            type: array[string]
+          ip_list:
+            children: null
+            type: array[string]
+        selected: false
+        title: Hunter 后处理
+        type: code
+        variables:
+        - value_selector:
+          - '1738897615154'
+          - target_name
+          variable: target_name
+        - value_selector:
+          - env
+          - day_range
+          variable: day_range
+        - value_selector:
+          - env
+          - hunter_api_key
+          variable: api_key
+        - value_selector:
+          - env
+          - page_size
+          variable: size
+        - value_selector:
+          - env
+          - timeout
+          variable: timeout
+      height: 89
+      id: '1738913986804'
+      position:
+        x: 333
+        y: 244.5
+      positionAbsolute:
+        x: 333
+        y: 244.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(target_name: str, day_range:int, api_key:str, size:int, timeout:int)\
+          \ -> dict:\n    if api_key==\"\":\n        return {\n            \"domain_list\"\
+          : [], \"ip_list\": [],\n        }\n    import datetime\n    import requests\n\
+          \    domain_set = set()\n    ip_set = set()\n    search = f'icp_keywords:\"\
+          {target_name}\"'\n    time_now = datetime.datetime.now()\n    start_time\
+          \ = (time_now-datetime.timedelta(days=day_range)).strftime(\"%Y-%m-%d %H:%M:%S\"\
+          )\n    end_time = time_now.strftime(\"%Y-%m-%d %H:%M:%S\")\n\n    headers\
+          \ = {\n        \"X-QuakeToken\": api_key,\n        \"Content-Type\": \"\
+          application/json\"\n    }\n\n    data = {\n        \"query\": search,\n\
+          \        \"start\": 0,\n        \"size\": size,\n        \"start_time\"\
+          : start_time,\n        \"end_time\": end_time,\n    }\n    \n\n    response\
+          \ = requests.post(\n        url=\"https://quake.360.net/api/v3/search/quake_service\"\
+          , headers=headers, json=data,\n        timeout=timeout,\n    )\n    # 结果报错更换\
+          \ api\n    data = response.json()\n    data = data.get(\"data\", [])\n\n\
+          \    for item in data:\n        domain_set.add(item.get(\"domain\", \"\"\
+          ))\n        ip_set.add(item.get(\"ip\", \"\"))\n\n    return {\n       \
+          \ \"domain_list\":list(domain_set),\n        \"ip_list\": list(ip_set),\n\
+          \    }"
+        code_language: python3
+        default_value:
+        - key: domain_list
+          type: array[string]
+          value: '[]'
+        - key: ip_list
+          type: array[string]
+          value: '[]'
+        desc: ''
+        error_strategy: default-value
+        outputs:
+          domain_list:
+            children: null
+            type: array[string]
+          ip_list:
+            children: null
+            type: array[string]
+        selected: true
+        title: Quake
+        type: code
+        variables:
+        - value_selector:
+          - '1738897615154'
+          - target_name
+          variable: target_name
+        - value_selector:
+          - env
+          - day_range
+          variable: day_range
+        - value_selector:
+          - env
+          - quake_api_key
+          variable: api_key
+        - value_selector:
+          - env
+          - page_size
+          variable: size
+        - value_selector:
+          - env
+          - timeout
+          variable: timeout
+      height: 89
+      id: '17389152715050'
+      position:
+        x: 333
+        y: 373.5
+      positionAbsolute:
+        x: 333
+        y: 373.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(d1: list, d2: list, d3: list, i1: list, i2: list, i3: list)\
+          \ -> dict:\n    domain_set = set(d1) | set(d2) | set(d3)\n    ip_set = set(i1)\
+          \ | set(i2) | set(i3)\n    \n    domain_list = sorted([d for d in domain_set\
+          \ if d])\n    ip_list = sorted([ip for ip in ip_set if ip])\n    res = \"\
+          ## 域名\\n\"\n    res += \"\\n\".join(domain_list)\n    res += \"\\n\\n##\
+          \ IP\\n\"\n    res += \"\\n\".join(ip_list)\n    return {\n        \"domain_list\"\
+          : domain_list,\n        \"ip_list\": ip_list,\n        \"result\":res\n\
+          \    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          domain_list:
+            children: null
+            type: array[string]
+          ip_list:
+            children: null
+            type: array[string]
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 去重并转化为字符串
+        type: code
+        variables:
+        - value_selector:
+          - '1738913986804'
+          - domain_list
+          variable: d1
+        - value_selector:
+          - '1739869071827'
+          - domain_list
+          variable: d2
+        - value_selector:
+          - '17389152715050'
+          - domain_list
+          variable: d3
+        - value_selector:
+          - '1738913986804'
+          - ip_list
+          variable: i1
+        - value_selector:
+          - '1739869071827'
+          - ip_list
+          variable: i2
+        - value_selector:
+          - '17389152715050'
+          - ip_list
+          variable: i3
+      height: 53
+      id: '1739242770386'
+      position:
+        x: 636
+        y: 373.5
+      positionAbsolute:
+        x: 636
+        y: 373.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(target_name: str, day_range:int, api_key:str, size:int, timeout:int)\
+          \ -> dict:\n    if api_key==\"\":\n        return {\n            \"domain_list\"\
+          :  [],\n            \"ip_list\": [],\n        }\n    import requests\n \
+          \   data = {\n        \"query\": f\"(company={target_name})||(group={target_name})\"\
+          ,\n        \"query_type\": \"site\",\n        \"page\": 1,\n        \"pagesize\"\
+          : size,\n        \"zone_key_id\": api_key\n    }\n\n    res = requests.post('https://0.zone/api/data/',\
+          \ json=data, timeout=timeout)\n\n    body_data = res.json()\n    data =\
+          \ body_data[\"data\"]\n    domain_set = set()\n    ip_set = set()\n    from\
+          \ urllib.parse import urlparse\n    import ipaddress\n    def is_ip_address(hostname):\n\
+          \        try:\n            # 尝试将 hostname 解析为 IP\n            ipaddress.ip_address(hostname)\n\
+          \            return True\n        except ValueError:\n            # 如果解析失败，则不是\
+          \ IP\n            return False\n    \n    for item in data:\n        hostname\
+          \ = urlparse(item.get(\"url\", \"\")).hostname\n        if is_ip_address(hostname):\n\
+          \            ip_set.add(item.get(\"ip\", \"\"))\n        else:\n       \
+          \     domain_set.add(hostname)\n        ip_set.add(item.get(\"ip\", \"\"\
+          ))\n\n    return {\n        \"domain_list\": list(domain_set) if domain_set\
+          \ else [],\n        \"ip_list\": list(ip_set) if ip_set else [],\n    }"
+        code_language: python3
+        default_value:
+        - key: domain_list
+          type: array[string]
+          value: '[]'
+        - key: ip_list
+          type: array[string]
+          value: '[]'
+        desc: ''
+        error_strategy: default-value
+        outputs:
+          domain_list:
+            children: null
+            type: array[string]
+          ip_list:
+            children: null
+            type: array[string]
+        retry_config:
+          max_retries: 3
+          retry_enabled: false
+          retry_interval: 1000
+        selected: false
+        title: ZeroSec
+        type: code
+        variables:
+        - value_selector:
+          - '1738897615154'
+          - target_name
+          variable: target_name
+        - value_selector:
+          - env
+          - day_range
+          variable: day_range
+        - value_selector:
+          - env
+          - zero_sec_api
+          variable: api_key
+        - value_selector:
+          - env
+          - page_size
+          variable: size
+        - value_selector:
+          - env
+          - timeout
+          variable: timeout
+      height: 89
+      id: '1739869071827'
+      position:
+        x: 333
+        y: 502.5
+      positionAbsolute:
+        x: 333
+        y: 502.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1739242770386'
+          - result
+          variable: result
+        selected: false
+        title: 结束
+        type: end
+      height: 89
+      id: '1739946668995'
+      position:
+        x: 939
+        y: 373.5
+      positionAbsolute:
+        x: 939
+        y: 373.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        author: admin
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: false
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"输入目标名称：”xxx有限公司“","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1742979698098'
+      position:
+        x: 30
+        y: 128.35054420693265
+      positionAbsolute:
+        x: 30
+        y: 128.35054420693265
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: admin
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: false
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"获取数据，去重，返回markdown形式。","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1742979794594'
+      position:
+        x: 636
+        y: 128.35054420693265
+      positionAbsolute:
+        x: 636
+        y: 128.35054420693265
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    viewport:
+      x: 58.721046885075
+      y: -63.708358908019704
+      zoom: 0.9999999999999999
